@@ -1,15 +1,24 @@
 package main
 
 import (
-	"net/http"
-	"github.com/go-chi/chi"
+	database "GoLandRest/shared"
+	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	
-	r := chi.NewRouter()
+
+	databaseConnection := database.InitDB()
+
+	defer databaseConnection.Close()
+
+	fmt.Println(databaseConnection)
+	//fmt.Println(connection)
+	/*r := chi.NewRouter()
 	r.Get("/", func(w http.ResponseWriter, r *http.Request){
 		w.Write([]byte("welcome"))
 	})
-	http.ListenAndServe(":3000", r)
+	http.ListenAndServe(":3000", r)*/
+
 }
